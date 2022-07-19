@@ -1,6 +1,6 @@
 const AC = document.getElementById("AC");
 AC.addEventListener("click", () => {
-    clearScreen();
+    resetCalc();
     // storeValue("AC");
     console.log("Clicked " + AC + " AC");
 });
@@ -27,19 +27,19 @@ divide.addEventListener("click", () => {
 
 const seven = document.getElementById("7");
 seven.addEventListener("click", () => {
-    storeValue("7");
+    storeLeftValue("7");
     console.log("Clicked " + seven + " 7");
 });
 
 const eight = document.getElementById("8");
 eight.addEventListener("click", () => {
-    storeValue("8");
+    storeLeftValue("8");
     console.log("Clicked " + eight + " 8");
 });
 
 const nine = document.getElementById("9");
 nine.addEventListener("click", () => {
-    storeValue("9");
+    storeLeftValue("9");
     console.log("Clicked " + nine + " 9");
 });
 
@@ -51,19 +51,19 @@ multiply.addEventListener("click", () => {
 
 const four = document.getElementById("4");
 four.addEventListener("click", () => {
-    storeValue("4");
+    storeLeftValue("4");
     console.log("Clicked " + four + " 4");
 });
 
 const five = document.getElementById("5");
 five.addEventListener("click", () => {
-    storeValue("5");
+    storeLeftValue("5");
     console.log("Clicked " + five + " 5");
 });
 
 const six = document.getElementById("6");
 six.addEventListener("click", () => {
-    storeValue("6");
+    storeLeftValue("6");
     console.log("Clicked " + six + " 6");
 });
 
@@ -75,19 +75,19 @@ minus.addEventListener("click", () => {
 
 const one = document.getElementById("1");
 one.addEventListener("click", () => {
-    storeValue("1");
+    storeLeftValue("1");
     console.log("Clicked " + one + " 1");
 });
 
 const two = document.getElementById("2");
 two.addEventListener("click", () => {
-    storeValue("2");
+    storeLeftValue("2");
     console.log("Clicked " + two + " 2");
 });
 
 const three = document.getElementById("3");
 three.addEventListener("click", () => {
-    storeValue("3");
+    storeLeftValue("3");
     console.log("Clicked " + three + " 3");
 });
 
@@ -99,19 +99,19 @@ plus.addEventListener("click", () => {
 
 const zero = document.getElementById("Zero");
 zero.addEventListener("click", () => {
-    storeValue("0");
+    storeLeftValue("0");
     console.log("Clicked " + zero + " 0");
 });
 
 const decimal = document.getElementById(".");
 decimal.addEventListener("click", () => {
-    storeValue(".");
+    storeLeftValue(".");
     console.log("Clicked " + decimal + " .");
 });
 
 const equals = document.getElementById("=");
 equals.addEventListener("click", () => {
-    storeValue("=");
+    storeLeftValue("=");
     console.log("Clicked " + equals + " =");
 });
 
@@ -121,14 +121,17 @@ const result = document.getElementById("result");
 // left operand and operator values for computation
 var leftOperand = undefined;
 var operator = undefined;
+var displayValue = 0;
 
 const update = (value) => {
     result.value = value;
 };
 
-const clearScreen = () => {
+const resetCalc = () => {
     result.innerText = 0;
     leftOperand = undefined;
+    operator = undefined;
+    displayValue = 0;
 };
 
 const storeOperator = (value) => {
@@ -137,33 +140,120 @@ const storeOperator = (value) => {
 };
 
 const negate = () => {
-    console.log(leftOperand);
-    result.innerText = -1 * Math.abs(leftOperand);
+    if (leftOperand !== undefined) {
+        console.log(leftOperand);
+        leftOperand = -1 * leftOperand;
+        result.innerText = leftOperand;
+    }
 };
 
 const percentageFunction = () => {
-    console.log(leftOperand);
+    // console.log(leftOperand);
+    // resize();
     leftOperand = leftOperand / 100;
-    if (leftOperand.length > 8) {
-        leftOperand = leftOperand.substring(leftOperand.length - 8);
+
+    // Test to se if it has decimal values
+    if (leftOperand % 1 !== 0) {
+        // this determines how long the decimal value is
+        if (leftOperand < 1) {
+            leftOperand = leftOperand.toFixed(8);
+            result.style.fontSize = "6vh";
+        }
+        displayValue = leftOperand;
+        // resize();
     }
-    result.innerText = leftOperand;
-    resize();
+
+    // This is for large number
+    else if (leftOperand.length > 8) {
+        displayValue = leftOperand.substring(leftOperand.length - 8);
+    } else {
+        displayValue = leftOperand;
+    }
+    result.innerText = displayValue;
+    // resize();
 };
 
-const storeValue = (value) => {
+const storeLeftValue = (value) => {
     if (leftOperand !== undefined && leftOperand.length > 8) {
         // Do nothing
         leftOperand = leftOperand;
-    } else if (leftOperand === undefined) {
+    } else if (leftOperand == 0) {
+        // Do nothing
+        leftOperand = leftOperand;
+    } else if (leftOperand === undefined || leftOperand === "NaN") {
         leftOperand = value;
+        result.innerText = leftOperand;
     } else if (leftOperand.length <= 8) {
         leftOperand += value;
-        result.innerText = leftOperand;
+        doesItNeedComma();
+        result.innerText = displayValue;
         console.log("Left operand is " + leftOperand);
     }
 
+    removeZero();
     resize();
+};
+
+const doesItNeedComma = () => {
+    // console.log("Doing doesnt i");
+    console.log("left operand length is " + leftOperand.length);
+    displayValue = leftOperand;
+    if (Number.isInteger(parseInt(leftOperand))) {
+        if (leftOperand.length === 4) {
+            displayValue = leftOperand.slice(0, 1) + "," + leftOperand.slice(1);
+            console.log("Adding comma");
+            result.innerText = displayValue;
+        }
+
+        if (leftOperand.length === 5) {
+            // result.innerText = ",";
+            displayValue = leftOperand.slice(0, 2) + "," + leftOperand.slice(2);
+            console.log("Adding comma");
+            result.innerText = displayValue;
+        }
+
+        if (leftOperand.length === 6) {
+            // result.innerText = ",";
+            displayValue = leftOperand.slice(0, 3) + "," + leftOperand.slice(3);
+            console.log("Adding comma");
+            result.innerText = displayValue;
+        }
+
+        if (leftOperand.length === 7) {
+            // result.innerText = ",";
+            displayValue =
+                leftOperand.slice(0, 1) +
+                "," +
+                leftOperand.slice(1, 4) +
+                "," +
+                leftOperand.slice(4);
+            console.log("Adding comma");
+            result.innerText = displayValue;
+        }
+
+        if (leftOperand.length === 8) {
+            // result.innerText = ",";
+            displayValue =
+                leftOperand.slice(0, 2) +
+                "," +
+                leftOperand.slice(2, 5) +
+                "," +
+                leftOperand.slice(5);
+            console.log("Adding comma");
+            result.innerText = displayValue;
+        }
+        if (leftOperand.length === 9) {
+            // result.innerText = ",";
+            displayValue =
+                leftOperand.slice(0, 3) +
+                "," +
+                leftOperand.slice(3, 6) +
+                "," +
+                leftOperand.slice(6);
+            console.log("Adding comma");
+            result.innerText = displayValue;
+        }
+    }
 };
 
 const resize = () => {
@@ -176,5 +266,10 @@ const resize = () => {
 
     if (leftOperand.length < 6) {
         result.style.fontSize = "9vh";
+    }
+};
+
+const removeZero = () => {
+    if (leftOperand[0] == 0) {
     }
 };
