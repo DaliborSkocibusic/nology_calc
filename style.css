@@ -13,13 +13,12 @@
 
 .row1 {
   display: flex;
-  text-indent: 3vh;
+  text-indent: 4.5vh;
   font-size: 9vh;
-  direction: rtl;
-  height: 35vh;
-  width: 40vh;
+  height: 38vh;
+  width: 35.5vh;
   color: white;
-  justify-content: start;
+  justify-content: end;
   align-items: end;
 }
 
@@ -59,18 +58,18 @@
 
 .button {
   display: flex;
+  font-family: Helvetica;
   margin: 0.5vh;
-  font-size: 5vh;
+  font-size: 3.8vh;
   padding: 2vh;
   text-emphasis: bold;
   border-radius: 10vh;
   color: white;
-  width: 5vh;
-  height: 5vh;
+  width: 4vh;
+  height: 4vh;
   justify-content: center;
   text-align: center;
   align-items: center;
-  border: 1px solid black;
 }
 .button__grey {
   background-color: rgb(48, 49, 49);
@@ -82,20 +81,11 @@
 .button__orange {
   background-color: rgb(245, 152, 6);
 }
-
-.button-wide {
-  display: flex;
-  border-radius: 10vh;
-  padding: 0.5vh;
-  margin: 0.5vh;
-  font-size: 5vh;
-  text-indent: 4vh;
-  width: 20vh;
-  height: 8vh;
+.button__wide {
+  width: 12.2265vh;
   background-color: rgb(48, 49, 49);
   justify-content: start;
-  align-items: center;
-  border: 1px solid black;
   text-align: left;
+  text-indent: 0.5vh;
   color: white;
 }
