@@ -105,13 +105,19 @@ zero.addEventListener("click", () => {
 
 const decimal = document.getElementById(".");
 decimal.addEventListener("click", () => {
-    storeLeftValue(".");
-    console.log("Clicked " + decimal + " .");
+    // This test makes sure its not a decimal
+    if (leftOperand % 1 == 0) {
+        // It fails when entering .. twice in a row
+        if (!leftOperand.toString().includes(".")) {
+            storeLeftValue(".");
+            console.log("Decimal stored " + decimal + " .");
+        }
+    }
 });
 
 const equals = document.getElementById("=");
 equals.addEventListener("click", () => {
-    storeLeftValue("=");
+    operate();
     console.log("Clicked " + equals + " =");
 });
 
@@ -122,6 +128,7 @@ const result = document.getElementById("result");
 var leftOperand = undefined;
 var operator = undefined;
 var displayValue = 0;
+var storedOperand = undefined;
 
 const update = (value) => {
     result.value = value;
@@ -132,10 +139,15 @@ const resetCalc = () => {
     leftOperand = undefined;
     operator = undefined;
     displayValue = 0;
+    storedOperand = undefined;
 };
 
 const storeOperator = (value) => {
     operator = value[0];
+    storedOperand = leftOperand;
+    leftOperand = undefined;
+    displayValue = undefined;
+    result.innerText = displayValue;
     console.log("Operator store " + operator);
 };
 
@@ -155,8 +167,15 @@ const percentageFunction = () => {
     // Test to se if it has decimal values
     if (leftOperand % 1 !== 0) {
         // this determines how long the decimal value is
+        // This is when the numbe is postive and % isused
         if (leftOperand < 1) {
             leftOperand = leftOperand.toFixed(8);
+            result.style.fontSize = "6vh";
+        }
+
+        // This is when the number is negagive and a string
+        if (leftOperand < 1 && Math.abs(leftOperand) > 100) {
+            leftOperand = Number.parseFloat(leftOperand).toFixed(4);
             result.style.fontSize = "6vh";
         }
         displayValue = leftOperand;
@@ -194,32 +213,64 @@ const storeLeftValue = (value) => {
     resize();
 };
 
+const operate = () => {
+    console.log("Left operand is " + leftOperand);
+    console.log("Operator is " + operator);
+    console.log("Stored operand is " + storedOperand);
+
+    if (operator === "+") {
+        storedOperand =
+            Number.parseFloat(leftOperand) + Number.parseFloat(storedOperand);
+    }
+
+    if (operator === "*") {
+        storedOperand =
+            Number.parseFloat(leftOperand) * Number.parseFloat(storedOperand);
+    }
+
+    if (operator === "/") {
+        storedOperand = (
+            Number.parseFloat(storedOperand) / Number.parseFloat(leftOperand)
+        ).toFixed(4);
+    }
+
+    if (operator === "-") {
+        storedOperand =
+            Number.parseFloat(storedOperand) - Number.parseFloat(leftOperand);
+    }
+
+    leftOperand = undefined;
+    operator = undefined;
+    displayValue = storedOperand;
+    result.innerText = displayValue;
+};
+
 const doesItNeedComma = () => {
     // console.log("Doing doesnt i");
     console.log("left operand length is " + leftOperand.length);
     displayValue = leftOperand;
     if (Number.isInteger(parseInt(leftOperand))) {
-        if (leftOperand.length === 4) {
+        if (leftOperand.length === 4 && leftOperand % 1 == 0) {
             displayValue = leftOperand.slice(0, 1) + "," + leftOperand.slice(1);
             console.log("Adding comma");
             result.innerText = displayValue;
         }
 
-        if (leftOperand.length === 5) {
+        if (leftOperand.length === 5 && leftOperand % 1 == 0) {
             // result.innerText = ",";
             displayValue = leftOperand.slice(0, 2) + "," + leftOperand.slice(2);
             console.log("Adding comma");
             result.innerText = displayValue;
         }
 
-        if (leftOperand.length === 6) {
+        if (leftOperand.length === 6 && leftOperand % 1 == 0) {
             // result.innerText = ",";
             displayValue = leftOperand.slice(0, 3) + "," + leftOperand.slice(3);
             console.log("Adding comma");
             result.innerText = displayValue;
         }
 
-        if (leftOperand.length === 7) {
+        if (leftOperand.length === 7 && leftOperand % 1 == 0) {
             // result.innerText = ",";
             displayValue =
                 leftOperand.slice(0, 1) +
@@ -231,7 +282,7 @@ const doesItNeedComma = () => {
             result.innerText = displayValue;
         }
 
-        if (leftOperand.length === 8) {
+        if (leftOperand.length === 8 && leftOperand % 1 == 0) {
             // result.innerText = ",";
             displayValue =
                 leftOperand.slice(0, 2) +
@@ -242,7 +293,7 @@ const doesItNeedComma = () => {
             console.log("Adding comma");
             result.innerText = displayValue;
         }
-        if (leftOperand.length === 9) {
+        if (leftOperand.length === 9 && leftOperand % 1 == 0) {
             // result.innerText = ",";
             displayValue =
                 leftOperand.slice(0, 3) +
