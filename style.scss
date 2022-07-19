@@ -1,24 +1,30 @@
 .container {
     display: flex;
+    border-radius: 6vh;
     flex-direction: column;
     background-color: black;
-    width: 40vw;
-    height: 80vh;
+    width: 40vh;
+    height: 90vh;
+    // text-indent: 5vh;
     margin-top: 5vh;
     margin-bottom: 5vh;
-    margin-left: 10vw;
-    margin-right: 10vw;
+    margin-left: 10vh;
+    margin-right: 10vh;
 }
 
 .row1 {
     display: flex;
-    font-size: 50px;
-    height: 30vh;
-    width: 40vw;
+    text-indent: 3vh;
+
+    font-size: 9vh;
+    direction: rtl;
+    height: 35vh;
+    width: 40vh;
 
     color: white;
-    justify-content: center;
-    align-items: center;
+    justify-content: start;
+
+    align-items: end;
 }
 
 .row2 {
@@ -58,12 +64,15 @@
 
 .button {
     display: flex;
+    font-family: Helvetica;
+    margin: 0.5vh;
+    font-size: 5vh;
+    padding: 2vh;
     text-emphasis: bold;
-    border-radius: 10vw;
+    border-radius: 10vh;
     color: white;
-    width: 10vw;
-    height: 10vh;
-    // background-color: magenta;
+    width: 5vh;
+    height: 5vh;
     justify-content: center;
     text-align: center;
     align-items: center;
@@ -81,17 +90,42 @@
     &__orange {
         background-color: rgb(245, 152, 6);
     }
+
+    &__wide {
+        display: flex;
+        border-radius: 10vh;
+        padding: 0.5vh;
+        margin: 0.5vh;
+        font-size: 5vh;
+        text-indent: 4vh;
+
+        width: 20vh;
+        height: 8vh;
+        background-color: rgb(48, 49, 49);
+        justify-content: start;
+        align-items: center;
+        border: 1px solid black;
+        text-align: left;
+        color: white;
+    }
 }
 
 .button-wide {
+    font-family: Helvetica;
+
     display: flex;
-    border-radius: 10vw;
-    width: 20vw;
-    height: 10vh;
+    border-radius: 10vh;
+    padding: 0.5vh;
+    margin: 0.5vh;
+    font-size: 5vh;
+    text-indent: 4vh;
+
+    width: 20vh;
+    height: 8vh;
     background-color: rgb(48, 49, 49);
-    justify-content: center;
+    justify-content: start;
     align-items: center;
     border: 1px solid black;
-    text-align: center;
+    text-align: left;
     color: white;
 }
