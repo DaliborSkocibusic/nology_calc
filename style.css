@@ -11,6 +11,11 @@
   margin-right: 10vh;
 }
 
+.conatiner2 {
+  display: flex;
+  flex-direction: row;
+}
+
 .row1 {
   display: flex;
   text-indent: 4.5vh;
@@ -22,36 +27,9 @@
   align-items: end;
 }
 
-.row2 {
+.row {
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  align-items: center;
-}
-
-.row3 {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-}
-
-.row4 {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-}
-
-.row5 {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-}
-
-.row6 {
-  display: flex;
   justify-content: center;
   align-items: center;
 }

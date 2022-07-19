@@ -10,7 +10,11 @@
     by Dalibor Skocibusic
     <br />
   </p>
+
+  <p>The image on the left is an actaul iphone calculator screenshot. The image on the right is my created calclator.</p>
 <img src="./iphone calc.png" width=10% height=10%>
+<img src="./my iphone.png" width=9.2% height=9.2%>
+
 </div>
 
 <!-- TABLE OF CONTENTS -->

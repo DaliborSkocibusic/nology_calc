@@ -11,61 +11,36 @@
     margin-right: 10vh;
 }
 
+.conatiner2 {
+    display: flex;
+    flex-direction: row;
+}
 .row1 {
     display: flex;
     text-indent: 4.5vh;
 
     font-size: 9vh;
-    
+
     // direction: rtl;
     height: 38vh;
     // This is a hack to make the
     // result align correctly: .;
-    // unformtanlty css coesnt do 
+    // unformtanlty css coesnt do
     // text indentation for direction rtl...
     // its not idead as teh container
     // is the full width.
     // But it will alwasy be les then the
     // other rows so it will work.
-    
-    width: 35.5vh;
 
+    width: 35.5vh;
     color: white;
     justify-content: end;
-
     align-items: end;
 }
 
-.row2 {
+.row {
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    align-items: center;
-}
-
-.row3 {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-}
-
-.row4 {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-}
-
-.row5 {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-}
-
-.row6 {
-    display: flex;
     justify-content: center;
     align-items: center;
 }
@@ -99,7 +74,7 @@
     }
 
     &__wide {
-        width: 13*.9405vh;
+        width: 13 * 0.9405vh;
         // margin-left: 2vh;;
         background-color: rgb(48, 49, 49);
         justify-content: start;
@@ -108,4 +83,3 @@
         color: white;
     }
 }
-
