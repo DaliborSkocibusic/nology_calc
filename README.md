@@ -72,8 +72,6 @@ Don't forget to give the project a star! Thanks again!
 
 ## Contact
 
-Dalibor Skocibusic - dalibor_skocibusic@hotmail.com
-
 Project Link: [https://github.com/DaliborSkocibusic/nology_calc](https://github.com/DaliborSkocibusic/nology_calc)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
